@@ -1,0 +1,12 @@
+.page {
+  background-color: #424242;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+}
+
+.page__content {
+  margin: auto;
+}
