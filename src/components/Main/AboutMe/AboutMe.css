@@ -1,0 +1,69 @@
+.about-me__container {
+  display: grid;
+  max-width: 1140px;
+  margin: auto;
+  grid-template-columns: 869px 270px;
+  grid-template-rows: 187px 143px 47px 186px 27px;
+  grid-template-areas:
+    'title avatar'
+    'name avatar'
+    'profession avatar'
+    'history avatar'
+    'link avatar'
+}
+
+.about-me__title {
+  grid-area: title;
+  width: 1140px;
+  padding: 139px 0 23px 0;
+  border-bottom: 1px solid #DADADA;
+  display: block;
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+
+.about-me__name {
+  grid-area: name;
+  font-size: 50px;
+  line-height: 58px;
+  font-weight: 400;
+  letter-spacing: -2.1px;
+  margin: 66px 0 18px 0;
+}
+
+.about-me__profession {
+  grid-area: profession;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.about-me__history {
+  grid-area: history;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 22px;
+  width: 600px;
+  margin: 0 0 99px 0;
+}
+
+.about-me__link {
+  grid-area: link;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.about-me__avatar {
+  grid-area: avatar;
+  margin: 253px 0 0 0;
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+}
