@@ -1,11 +1,10 @@
 import './AboutMe.css';
-import ff from '../../../images/avatar.jpg';
+import photo from '../../../images/avatar.jpg';
 
 function AboutMe() {
   return (
     <section className='about-me'>
       <div className='about-me__container'>
-
         <h2 className='about-me__title'>Студент</h2>
         <h3 className='about-me__name'>Виталий</h3>
         <p className='about-me__profession'>Фронтенд-разработчик, 30 лет</p>
@@ -14,8 +13,7 @@ function AboutMe() {
           работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал
           заниматься фриланс-заказами и ушёл с постоянной работы.</p>
         <a className='about-me__link' href='https://github.com/Vitali-workspace' target='_blank' rel='noreferrer'>Github</a>
-
-        <img className='about-me__avatar' src={ff} alt='фото разработчика' />
+        <img className='about-me__avatar' src={photo} alt='фото разработчика' />
       </div>
     </section>
   );

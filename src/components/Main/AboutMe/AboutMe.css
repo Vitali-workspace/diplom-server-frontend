@@ -1,11 +1,12 @@
 .about-me__container {
   display: grid;
   max-width: 1140px;
+  min-width: 260px;
   margin: auto;
-  grid-template-columns: 869px 270px;
-  grid-template-rows: 187px 143px 47px 186px 27px;
+  grid-template-columns: minmax(300px, 869px) 270px;
+  grid-template-rows: 163px 141px 47px 186px 27px;
   grid-template-areas:
-    'title avatar'
+    'title title'
     'name avatar'
     'profession avatar'
     'history avatar'
@@ -14,8 +15,7 @@
 
 .about-me__title {
   grid-area: title;
-  width: 1140px;
-  padding: 139px 0 23px 0;
+  padding: 112px 0 0 0;
   border-bottom: 1px solid #DADADA;
   display: block;
   font-size: 22px;
@@ -47,8 +47,8 @@
   display: inline-block;
   font-size: 14px;
   line-height: 22px;
-  width: 600px;
-  margin: 0 0 99px 0;
+  max-width: 600px;
+  margin: 0 30px 99px 0;
 }
 
 .about-me__link {
@@ -58,12 +58,105 @@
   line-height: 17px;
   text-decoration: none;
   color: #FFFFFF;
+  transition: opacity .4s linear;
+}
+
+.about-me__link:hover {
+  cursor: pointer;
+  opacity: .6;
 }
 
 .about-me__avatar {
   grid-area: avatar;
-  margin: 253px 0 0 0;
+  margin: 65px 0 0 0;
   width: 270px;
   height: 327px;
   border-radius: 10px;
+}
+
+
+@media screen and (max-width: 800px) {
+
+  .about-me__container {
+    grid-template-columns: minmax(300px, 869px) 277px;
+    grid-template-rows: 146px 122px 38px 194px 27px;
+  }
+
+  .about-me__title {
+    padding: 95px 0 0 0;
+  }
+
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .about-me__profession {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__history {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__avatar {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+
+@media screen and (max-width: 640px) {
+  .about-me__container {
+    grid-template-columns: minmax(300px, 600px);
+    grid-template-rows: 124px 385px 122px 36px 152px 29px;
+    grid-template-areas:
+      'title'
+      'avatar'
+      'name'
+      'profession'
+      'history'
+      'link'
+  }
+
+  .about-me__title {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 74px 0 0 0;
+  }
+
+  .about-me__name {
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -1.1px;
+  }
+
+  .about-me__profession {
+    letter-spacing: -0.6px;
+  }
+
+  .about-me__history {
+    font-size: 11px;
+    line-height: 16px;
+    min-width: 292px;
+  }
+
+  .about-me__avatar {
+    margin: 60px auto 0;
+    width: 292px;
+    height: 352px;
+  }
+}
+
+
+@media screen and (max-width: 350px) {
+  .about-me__container {
+    grid-template-columns: minmax(288px, 340px);
+  }
+
+  .about-me__avatar {
+    width: 288px;
+  }
 }
