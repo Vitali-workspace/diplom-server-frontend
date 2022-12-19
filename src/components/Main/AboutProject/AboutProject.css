@@ -1,0 +1,177 @@
+.project__container {
+  max-width: 1140px;
+  margin: auto;
+}
+
+.project__title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  border-bottom: 1px solid #DADADA;
+  display: block;
+  max-width: 1140px;
+  padding: 110px 0 23px 0;
+  margin: 0;
+  letter-spacing: -1.1px;
+}
+
+.project__container-history {
+  display: flex;
+  justify-content: space-between;
+}
+
+.project__history {
+  max-width: 550px;
+  min-width: 280px;
+}
+
+.project__subtitle {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 70px 0 27px 0;
+  margin: 0;
+  letter-spacing: -0.8px;
+}
+
+.project__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  max-width: 550px;
+  margin: 0;
+}
+
+.project__time {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #303030;
+  height: 26px;
+  padding: 9px 0 0 0;
+  margin: 0;
+}
+
+.project__technology {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8B8B8B;
+  text-align: center;
+  padding: 15px 0 53px 0;
+  margin: 0;
+}
+
+.project__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 108px 0 78px 0;
+  display: grid;
+  grid-template-columns: 228px minmax(184px, 912px);
+  grid-template-rows: 100px;
+}
+
+.project__list-element_color_green {
+  background-color: #3DDC84;
+  color: #000000;
+}
+
+
+@media screen and (max-width: 1050px) {
+
+  .project__container-history {
+    column-gap: 30px;
+  }
+}
+
+
+@media screen and (max-width: 850px) {
+
+  .project__container-history {
+    column-gap: 16px;
+  }
+
+  .project__history {
+    max-width: 400px;
+  }
+
+  .project__title {
+    max-width: 670px;
+  }
+
+  .project__text {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.1px;
+  }
+
+  .project__subtitle {
+    padding: 70px 0 21px 0;
+  }
+
+  .project__list {
+    padding: 93px 0 60px 0;
+    grid-template-columns: 140px minmax(328px, 912px);
+  }
+
+  .project__technology {
+    font-family: 'Suisse Intl', Arial, sans-serif;
+    color: #A0A0A0;
+  }
+
+  .project__list-element {
+    max-width: 530px;
+  }
+
+}
+
+
+@media screen and (max-width: 670px) {
+
+  .project__title {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 73px 0 27px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .project__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .project__text {
+    font-size: 11px;
+    line-height: 16px;
+    padding-top: 3px;
+  }
+
+  .project__container-history {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project__subtitle {
+    padding: 60px 0 11px 0;
+  }
+
+  .project__list {
+    padding: 59px 0 26px 0;
+    grid-template-columns: 100px minmax(184px, 912px);
+  }
+
+  .project__time {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 11px 0 0 0;
+  }
+
+  .project__technology {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 9px 0 53px 0;
+  }
+
+}
