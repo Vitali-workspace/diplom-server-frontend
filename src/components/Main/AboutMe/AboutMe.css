@@ -3,6 +3,7 @@
   max-width: 1140px;
   min-width: 260px;
   margin: auto;
+  padding: 0 70px;
   grid-template-columns: minmax(300px, 869px) 270px;
   grid-template-rows: 163px 141px 47px 186px 27px;
   grid-template-areas:
@@ -104,11 +105,21 @@
   .about-me__avatar {
     width: 255px;
     height: 307px;
+    margin-left: 38px;
+  }
+}
+
+
+@media screen and (max-width: 780px) {
+
+  .about-me__container {
+    padding: 0 50px;
   }
 }
 
 
 @media screen and (max-width: 640px) {
+
   .about-me__container {
     grid-template-columns: minmax(300px, 600px);
     grid-template-rows: 124px 385px 122px 36px 152px 29px;
@@ -140,13 +151,24 @@
   .about-me__history {
     font-size: 11px;
     line-height: 16px;
-    min-width: 292px;
   }
 
   .about-me__avatar {
     margin: 60px auto 0;
     width: 292px;
     height: 352px;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  .about-me__container {
+    padding: 0 14px;
+  }
+
+  .about-me__history {
+    margin: 0;
+    width: 280px;
   }
 }
 

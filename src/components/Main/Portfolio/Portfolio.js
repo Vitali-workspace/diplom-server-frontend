@@ -12,19 +12,27 @@ function Portfolio() {
             <a className='portfolio__link' href='https://github.com/Vitali-workspace/how-to-learn' target='_blank' rel='noreferrer'>
               Статичный сайт
             </a>
-            <img className='portfolio__icon' src={linkIcon} alt='иконка ссылки' />
+            <a className='portfolio__icon-link' href='https://github.com/Vitali-workspace/how-to-learn' target='_blank' rel='noreferrer'>
+              <img className='portfolio__icon' src={linkIcon} alt='иконка ссылки' />
+            </a>
+
           </li>
           <li className='portfolio__list-element' target='_blank' rel='noreferrer'>
             <a className='portfolio__link' href='https://github.com/Vitali-workspace/russian-travel-master_GHP' target='_blank' rel='noreferrer'>
               Адаптивный сайт
             </a>
-            <img className='portfolio__icon' src={linkIcon} alt='иконка ссылки' />
+            <a className='portfolio__icon-link' href='https://github.com/Vitali-workspace/russian-travel-master_GHP' target='_blank' rel='noreferrer'>
+              <img className='portfolio__icon' src={linkIcon} alt='иконка ссылки' />
+            </a>
+
           </li>
           <li className='portfolio__list-element' target='_blank' rel='noreferrer'>
             <a className='portfolio__link' href='https://github.com/Vitali-workspace/react-mesto-api-full' target='_blank' rel='noreferrer'>
               Одностраничное приложение
             </a>
-            <img className='portfolio__icon' src={linkIcon} alt='иконка ссылки' />
+            <a className='portfolio__icon-link' href='https://github.com/Vitali-workspace/react-mesto-api-full' target='_blank' rel='noreferrer'>
+              <img className='portfolio__icon' src={linkIcon} alt='иконка ссылки' />
+            </a>
           </li>
         </ul>
       </div>

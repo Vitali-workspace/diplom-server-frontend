@@ -1,6 +1,7 @@
 .project__container {
   max-width: 1140px;
   margin: auto;
+  padding: 0 70px;
 }
 
 .project__title {
@@ -128,6 +129,14 @@
 }
 
 
+@media screen and (max-width: 780px) {
+
+  .project__container {
+    padding: 0 50px;
+  }
+}
+
+
 @media screen and (max-width: 670px) {
 
   .project__title {
@@ -172,6 +181,14 @@
     font-size: 11px;
     line-height: 13px;
     padding: 9px 0 53px 0;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+
+  .project__container {
+    padding: 0 18px;
   }
 
 }

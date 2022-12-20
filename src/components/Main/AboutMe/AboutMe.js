@@ -1,5 +1,5 @@
 import './AboutMe.css';
-import photo from '../../../images/avatar.jpg';
+import photo from '../../../images/user-pic.svg';
 
 function AboutMe() {
   return (

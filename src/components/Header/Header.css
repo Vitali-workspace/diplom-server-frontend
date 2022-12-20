@@ -1,13 +1,17 @@
-.header {
+.header_color_blue {
   background-color: #073042;
+}
+
+.header_color_black {
+  background-color: #202020;
 }
 
 .header__container {
   display: flex;
   justify-content: space-between;
   max-width: 1140px;
+  padding: 0 70px;
   margin: auto;
-  background-color: #073042;
 }
 
 .header__logo {
@@ -51,4 +55,32 @@
 .header__btn-login:hover {
   cursor: pointer;
   opacity: .6;
+}
+
+
+@media screen and (max-width: 780px) {
+
+  .header__container {
+    padding: 0 30px;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+
+  .header__container {
+    padding: 0 14px;
+  }
+
+  .header__btn-login {
+    width: 54px;
+    height: 26px;
+    margin: 24px 0;
+  }
+
+  .header__btn-registration {
+    font-size: 10px;
+    margin-right: 13px;
+  }
+
 }
