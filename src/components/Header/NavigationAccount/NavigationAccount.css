@@ -1,0 +1,49 @@
+.nav-account {
+  position: absolute;
+  margin-left: 43px;
+}
+
+.nav-account__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-account__link {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: opacity .4s linear;
+  margin-left: 16px;
+}
+
+.nav-account__link:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+.account-button {
+  width: 100px;
+  height: 32px;
+  background-color: #313131;
+  border: none;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+  transition: opacity .4s linear;
+  padding: 0;
+}
+
+.account-button:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-account {
+    display: none;
+  }
+}
