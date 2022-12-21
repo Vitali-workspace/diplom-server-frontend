@@ -52,10 +52,6 @@
   color: #FFFFFF;
 }
 
-.login__input::placeholder {
-  color: #FFFFFF;
-}
-
 .login__button {
   width: 396px;
   height: 45px;
@@ -129,6 +125,8 @@
   .login__text {
     font-size: 12px;
     line-height: 15px;
+    width: 260px;
+    text-align: center;
   }
 
   .login__link {

@@ -8,7 +8,7 @@ function Profile() {
 
   function logout(evt) {
     evt.preventDefault();
-    navigation('/movies');
+    navigation('/');
   }
 
 

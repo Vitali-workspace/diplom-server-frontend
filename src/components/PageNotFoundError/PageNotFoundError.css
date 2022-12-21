@@ -1,4 +1,4 @@
-.pageNotFoundError__container {
+.not-page__container {
   max-width: 1140px;
   padding: 0 70px;
   margin: 0 auto;
@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.pageNotFoundError__title {
+.not-page__title {
   font-weight: 400;
   font-size: 140px;
   line-height: 169px;
@@ -17,7 +17,7 @@
   padding: 246px 0 0 0;
 }
 
-.pageNotFoundError__text {
+.not-page__text {
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
@@ -26,7 +26,7 @@
   margin: 0;
 }
 
-.pageNotFoundError__button {
+.not-page__button {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -36,7 +36,7 @@
   transition: opacity .4s linear;
 }
 
-.pageNotFoundError__button:hover {
+.not-page__button:hover {
   cursor: pointer;
   opacity: .6;
 }
@@ -44,7 +44,7 @@
 
 @media screen and (max-width: 780px) {
 
-  .pageNotFoundError__title {
+  .not-page__title {
     padding: 408px 0 0 0;
   }
 }
@@ -52,19 +52,19 @@
 
 @media screen and (max-width: 340px) {
 
-  .pageNotFoundError__title {
+  .not-page__title {
     font-size: 80px;
     line-height: 97px;
     padding: 329px 0 0 0;
   }
 
-  .pageNotFoundError__text {
+  .not-page__text {
     font-size: 12px;
     line-height: 15px;
     padding: 10px 0 284px 0;
   }
 
-  .pageNotFoundError__button {
+  .not-page__button {
     font-size: 12px;
     line-height: 15px;
   }

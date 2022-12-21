@@ -10,11 +10,11 @@ function PageNotFoundError() {
   }
 
   return (
-    <section className="pageNotFoundError">
-      <div className='pageNotFoundError__container'>
-        <h1 className='pageNotFoundError__title'>404</h1>
-        <p className='pageNotFoundError__text'>Страница не найдена</p>
-        <button className='pageNotFoundError__button' onClick={handleClick}>Назад</button>
+    <section className='not-page'>
+      <div className='not-page__container'>
+        <h1 className='not-page__title'>404</h1>
+        <p className='not-page__text'>Страница не найдена</p>
+        <button className='not-page__button' onClick={handleClick}>Назад</button>
       </div>
     </section>
   );

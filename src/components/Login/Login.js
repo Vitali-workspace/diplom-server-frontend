@@ -13,7 +13,7 @@ function Login() {
   }
 
   return (
-    <section className="login">
+    <section className='login'>
       <form className='login__container' onSubmit={submitForm}>
         <div className='login__logo'></div>
         <h1 className='login__title'>Рады видеть!</h1>
