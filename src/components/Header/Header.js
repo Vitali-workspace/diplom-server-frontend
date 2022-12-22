@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import './Header.css';
 
-import NavigationAccount from './NavigationAccount/NavigationAccount';
-import NavigationMain from './NavigationMain/NavigationMain';
-import NavigationSlaider from './NavigationSlaider/NavigationSlaider';
+import NavigationAccount from '../Navigation/NavigationAccount/NavigationAccount';
+import NavigationMain from '../Navigation/NavigationMain/NavigationMain';
+import NavigationSlaider from '../Navigation/NavigationSlaider/NavigationSlaider';
 
 function Header({ loggedIn, color }) {
 

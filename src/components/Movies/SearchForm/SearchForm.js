@@ -1,19 +1,16 @@
 import './SearchForm.css'
 
-//! передаём name submit
-//! 'Передаём обработчик onChange из App'
-function SearchForm({ onSubmit }) {
+
+function SearchForm() {
   return (
     <section className='search-form'>
-      <form className='search-form__container' onSubmit={onSubmit}>
+      <form className='search-form__container'>
 
         <fieldset className='search-form__fieldset'>
           <input
             className='search-form__input'
             type='text'
             placeholder='Фильм'
-            value={null}
-            onChange={null}
             required
           />
           <button className='search-form__submit' type='submit'>
