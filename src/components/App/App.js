@@ -14,7 +14,9 @@ import Portfolio from '../Main/Portfolio/Portfolio';
 import Techs from '../Main/Techs/Techs';
 
 import SearchForm from '../Movies/SearchForm/SearchForm';
-
+import Preloader from '../Movies/Preloader/Preloader';
+import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import { listMovies } from '../../utils/constants'
 
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
               <>
                 <Header loggedIn={true} color={'black'} />
                 <SearchForm />
+                <Preloader isEnable={false} />
+                <MoviesCardList cardsList={listMovies} />
                 <Footer />
               </>
             }
@@ -56,6 +60,8 @@ function App() {
               <>
                 <Header loggedIn={true} color={'black'} />
                 <SearchForm />
+                <Preloader isEnable={false} />
+                <MoviesCardList cardsList={listMovies} unsubMovie={'true'} />
                 <Footer />
               </>
             }
