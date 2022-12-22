@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import './NavigationSlaider.css';
 
 
-function NavigationSlaider({ setSlaider, btnProfile }) {
+function NavigationSlaider({ stateSlaider, btnProfile }) {
 
   function handleCloseSlaider() {
-    setSlaider(false);
+    stateSlaider(false);
   }
 
   return (
@@ -17,13 +17,19 @@ function NavigationSlaider({ setSlaider, btnProfile }) {
         <nav className='nav-slaider__list'>
           <NavLink
             className={({ isActive }) => isActive ? 'nav-slaider__link nav-slaider__link_active' : 'nav-slaider__link'}
-            to='/'>Главная</NavLink>
+            to='/'
+            onClick={handleCloseSlaider}
+          >Главная</NavLink>
           <NavLink
             className={({ isActive }) => isActive ? 'nav-slaider__link nav-slaider__link_active' : 'nav-slaider__link'}
-            to='/movies'>Фильмы</NavLink>
+            to='/movies'
+            onClick={handleCloseSlaider}
+          >Фильмы</NavLink>
           <NavLink
             className={({ isActive }) => isActive ? 'nav-slaider__link nav-slaider__link_active' : 'nav-slaider__link'}
-            to='/saved-movies'>Сохранённые фильмы</NavLink>
+            to='/saved-movies'
+            onClick={handleCloseSlaider}
+          >Сохранённые фильмы</NavLink>
           <button className='nav-slaider__btn-account' onClick={btnProfile}>Аккаунт</button>
         </nav>
       </div>

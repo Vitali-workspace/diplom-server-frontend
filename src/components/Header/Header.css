@@ -9,6 +9,7 @@
 .header__container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   max-width: 1140px;
   padding: 0 70px;
   margin: auto;
@@ -20,41 +21,6 @@
   width: 38px;
   height: 38px;
   margin: 18px 0;
-}
-
-.header__btn-registration {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  color: #FFFFFF;
-  transition: opacity .4s linear;
-}
-
-.header__btn-login {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  background-color: #3DDC84;
-  border: none;
-  border-radius: 3px;
-  margin: 21px 0;
-  width: 76px;
-  height: 31px;
-  margin-left: 30px;
-  transition: opacity .4s linear;
-}
-
-.header__btn-registration:hover {
-  cursor: pointer;
-  opacity: .6;
-}
-
-.header__btn-login:hover {
-  cursor: pointer;
-  opacity: .6;
 }
 
 
@@ -70,17 +36,6 @@
 
   .header__container {
     padding: 0 14px;
-  }
-
-  .header__btn-login {
-    width: 54px;
-    height: 26px;
-    margin: 24px 0;
-  }
-
-  .header__btn-registration {
-    font-size: 10px;
-    margin-right: 13px;
   }
 
 }

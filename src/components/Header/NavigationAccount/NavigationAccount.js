@@ -2,7 +2,11 @@ import { NavLink } from 'react-router-dom';
 
 import './NavigationAccount.css';
 
-function NavigationAccount({ button }) {
+function NavigationAccount({ stateSlaider, btnProfile }) {
+
+  function handleSlaiderBtn() {
+    stateSlaider(true);
+  }
 
   return (
     <>
@@ -16,7 +20,8 @@ function NavigationAccount({ button }) {
             to='/saved-movies'>Сохранённые фильмы</NavLink>
         </nav>
       </section>
-      <button className='account-button' onClick={button}>Аккаунт</button>
+      <button className='account-button' onClick={btnProfile}>Аккаунт</button>
+      <button className='account-button__burger' onClick={handleSlaiderBtn}></button>
     </>
   );
 }

@@ -32,6 +32,12 @@
   background-color: transparent;
   padding: 0;
   margin: 9px 0 0 92%;
+  transition: opacity .4s linear;
+}
+
+.nav-slaider__btn-close:hover {
+  cursor: pointer;
+  opacity: .6;
 }
 
 .nav-slaider__list {

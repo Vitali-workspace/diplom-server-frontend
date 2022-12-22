@@ -42,8 +42,36 @@
   opacity: .6;
 }
 
+.account-button__burger {
+  display: none;
+  background-image: url('../../../images/icon-nav.svg');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 44px;
+  height: 44px;
+  transition: opacity .4s linear;
+  border: none;
+  padding: 0;
+}
+
+.account-button__burger:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+
 @media screen and (max-width: 768px) {
   .nav-account {
+    display: none;
+  }
+
+  .account-button__burger {
+    display: flex;
+    width: 41px;
+    height: 43px;
+  }
+
+  .account-button {
     display: none;
   }
 }
