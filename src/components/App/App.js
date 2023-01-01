@@ -1,6 +1,9 @@
-import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 import './App.css';
+import ProtectedRoute from '../Movies/ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Register from '../Register/Register';
@@ -18,89 +21,166 @@ import Preloader from '../Movies/Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import { listMovies } from '../../utils/constants'
 
+import requestMainApi from '../../utils/MainApi';
+import requestMoviesApi from '../../utils/MoviesApi';
+
+
+
 
 function App() {
+
+  const [isAuthorized, setAuthorized] = useState(false);
+  const [isCurrentUser, setCurrentUser] = useState({});
+  const [isEnablePreloader, setEnablePreloader] = useState(false);
+
+  const navigation = useNavigate();
+  const token = localStorage.getItem('jwt');
+
+  // Данные для заполнения профиля
+  useEffect(() => {
+    requestMainApi.getUserInfo(token)
+      .then((user) => {
+        console.log(user);
+        setCurrentUser(user);
+      })
+      .catch((err) => {
+        console.log(`ошибка в авторизации: ${err}`);
+      });
+  }, [isAuthorized, token]);
+
+
+  function handleLogin(userInfo) {
+    requestMainApi.login(userInfo)
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem('jwt', res.token);
+          setAuthorized(true);
+          navigation('/movies');
+        }
+      })
+      .catch((err) => {
+        console.log(`ошибка в авторизации: ${err}`);
+      });
+  }
+
+
+  function handleRegistration(userInfo) {
+    requestMainApi.registration(userInfo)
+      .then(() => {
+        navigation('/');
+      })
+      .catch((err) => {
+        console.log(`ошибка в регистрации: ${err}`);
+      })
+  }
+
+
+  function handleSignOut() {
+    localStorage.removeItem('jwt');
+    setCurrentUser({});
+    setAuthorized(false);
+    navigation('/');
+  }
+
+  function handleUpdateUser(userInfo) {
+    requestMainApi.updateUserInfo(userInfo)
+      .then((profileInfo) => {
+        setCurrentUser(profileInfo);
+      })
+      .catch((err) => console.log(`ошибка при изменении профиля: ${err}`));
+  }
+
+
+  //! handle на поиск фильмов
+  //! handle на лайки
+  //! handle на удаление фильмов
+
   return (
+    <CurrentUserContext.Provider value={isCurrentUser}>
+      <div className='page'>
+        <div className='page__content'>
+          <Routes>
+            <Route
+              exact
+              path='/'
+              element={
+                <>
+                  <Header loggedIn={isAuthorized} color={'blue'} />
+                  <Promo />
+                  <AboutProject />
+                  <Techs />
+                  <AboutMe />
+                  <Portfolio />
+                  <Footer />
+                </>
+              }
+            />
 
-    <div className='page'>
-      <div className='page__content'>
-        <Routes>
-          <Route
-            exact
-            path='/'
-            element={
-              <>
-                <Header loggedIn={false} color={'blue'} />
-                <Promo />
-                <AboutProject />
-                <Techs />
-                <AboutMe />
-                <Portfolio />
-                <Footer />
-              </>
-            }
-          />
+            <Route
+              path='/movies'
+              element={
+                <ProtectedRoute loggedIn={isAuthorized}>
+                  <Header loggedIn={isAuthorized} color={'black'} />
+                  <SearchForm />
+                  <Preloader isEnable={isEnablePreloader} />
+                  <MoviesCardList cardsList={listMovies} />
+                  <Footer />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route
-            path='/movies'
-            element={
-              <>
-                <Header loggedIn={true} color={'black'} />
-                <SearchForm />
-                <Preloader isEnable={false} />
-                <MoviesCardList cardsList={listMovies} />
-                <Footer />
-              </>
-            }
-          />
+            <Route
+              path='/saved-movies'
+              element={
+                <ProtectedRoute loggedIn={isAuthorized}>
+                  <Header loggedIn={true} color={'black'} />
+                  <SearchForm />
+                  <Preloader isEnable={isEnablePreloader} />
+                  <MoviesCardList cardsList={listMovies} unsubMovie={'true'} />
+                  <Footer />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route
-            path='/saved-movies'
-            element={
-              <>
-                <Header loggedIn={true} color={'black'} />
-                <SearchForm />
-                <Preloader isEnable={false} />
-                <MoviesCardList cardsList={listMovies} unsubMovie={'true'} />
-                <Footer />
-              </>
-            }
-          />
+            <Route
+              path='/profile'
+              element={
+                <ProtectedRoute loggedIn={isAuthorized}>
+                  <Header loggedIn={true} color={'black'} />
+                  <Profile onSubmitProfile={handleUpdateUser} onLogout={handleSignOut} userInfo={isCurrentUser} />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route
-            path='/profile'
-            element={
-              <>
-                <Header loggedIn={true} color={'black'} />
-                <Profile />
-              </>
-            }
-          />
+            <Route
+              path='/signin'
+              element={
+                isAuthorized
+                  ? <Navigate to='/' />
+                  : <Login onLogin={handleLogin} />
+              }
+            />
 
-          <Route
-            path='/signin'
-            element={
-              <Login />
-            }
-          />
+            <Route
+              path='/signup'
+              element={
+                isAuthorized
+                  ? <Navigate to='/signin' />
+                  : <Register onRegister={handleRegistration} />
+              }
+            />
 
-          <Route
-            path='/signup'
-            element={
-              <Register />
-            }
-          />
+            <Route
+              path='*'
+              element={
+                <PageNotFoundError />
+              }
+            />
 
-          <Route
-            path='*'
-            element={
-              <PageNotFoundError />
-            }
-          />
-
-        </Routes>
+          </Routes>
+        </div>
       </div>
-    </div>
+    </CurrentUserContext.Provider>
   );
 }
 
