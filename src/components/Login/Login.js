@@ -1,32 +1,30 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import useFormValidator from '../../hooks/useFormValidator';
+
 import './Login.css';
 
 
-function Login() {
+function Login({ onLogin }) {
 
+  const { isErrors, isValues, isValid, handleChangeInput } = useFormValidator();
   const navigation = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
 
-  React.useEffect(() => {
-    setEmail('');
-    setPassword('');
-  }, []);
-
-  function handleInputEmail(evt) {
-    setEmail(evt.target.value);
-  }
-
-  function handleInputPassword(evt) {
-    setPassword(evt.target.value);
-  }
+  // React.useEffect(() => {
+  //   setEmail('');
+  //   setPassword('');
+  // }, []);
 
   function submitForm(evt) {
     evt.preventDefault();
-    navigation('/movies');
+    onLogin({
+      'email': isValues.email,
+      'password': isValues.password,
+    });
   }
 
   return (
@@ -39,8 +37,9 @@ function Login() {
           <input
             className='login__input'
             type='email'
-            value={email || ''}
-            onChange={handleInputEmail}
+            name='email'
+            value={isValues.email || ''}
+            onChange={handleChangeInput}
             required
           />
 
@@ -48,8 +47,9 @@ function Login() {
           <input
             className='login__input'
             type='password'
-            value={password || ''}
-            onChange={handleInputPassword}
+            name='password'
+            value={isValues.password || ''}
+            onChange={handleChangeInput}
             required
           />
         </fieldset>
