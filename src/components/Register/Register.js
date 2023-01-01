@@ -1,14 +1,21 @@
 import { Link, useNavigate } from 'react-router-dom';
 
+import useFormValidator from '../../hooks/useFormValidator';
 import './Register.css';
 
 
-function Register() {
+function Register({ onRegister }) {
 
+  const { isErrors, isValues, isValid, handleChangeInput, setErrors, setValues, setIsValid } = useFormValidator();
   const navigation = useNavigate();
 
   function submitForm(evt) {
     evt.preventDefault();
+    onRegister({
+      name: isValues.name,
+      email: isValues.email,
+      password: isValues.password,
+    })
     navigation('/signin');
   }
 
@@ -23,18 +30,27 @@ function Register() {
           <input
             className='register__input'
             type='text'
+            name='name'
+            onChange={handleChangeInput}
+            required
           />
 
           <p className='register__text-input'>E-mail</p>
           <input
             className='register__input'
             type='email'
+            name='email'
+            onChange={handleChangeInput}
+            required
           />
 
           <p className='register__text-input'>Пароль</p>
           <input
             className='register__input'
             type='password'
+            name='password'
+            onChange={handleChangeInput}
+            required
           />
         </fieldset>
 
