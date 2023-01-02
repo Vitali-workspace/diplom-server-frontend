@@ -30,7 +30,9 @@ function NavigationSlaider({ stateSlaider, btnProfile }) {
             to='/saved-movies'
             onClick={handleCloseSlaider}
           >Сохранённые фильмы</NavLink>
-          <button className='nav-slaider__btn-account' onClick={btnProfile}>Аккаунт</button>
+          <NavLink to='/profile'>
+            <button className='nav-slaider__btn-account' onClick={btnProfile}>Аккаунт</button>
+          </NavLink>
         </nav>
       </div>
     </section>
