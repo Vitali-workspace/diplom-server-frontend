@@ -36,16 +36,18 @@ function App() {
   const navigation = useNavigate();
   const token = localStorage.getItem('jwt');
 
-  // Данные для заполнения профиля
+  // функция для заполнения профиля
   useEffect(() => {
-    requestMainApi.getUserInfo(token)
-      .then((user) => {
-        console.log(user);
-        setCurrentUser(user);
-      })
-      .catch((err) => {
-        console.log(`ошибка в авторизации: ${err}`);
-      });
+    if (isAuthorized === true) {
+      requestMainApi.getUserInfo(token)
+        .then((user) => {
+          console.log(user);
+          setCurrentUser(user);
+        })
+        .catch((err) => {
+          console.log(`ошибка в авторизации: ${err}`);
+        });
+    }
   }, [isAuthorized, token]);
 
 
@@ -59,7 +61,7 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(`ошибка в авторизации: ${err}`);
+        console.log(`ошибка при авторизации: ${err}`);
       });
   }
 
@@ -70,7 +72,7 @@ function App() {
         navigation('/');
       })
       .catch((err) => {
-        console.log(`ошибка в регистрации: ${err}`);
+        console.log(`ошибка при регистрации: ${err}`);
       })
   }
 
@@ -83,17 +85,28 @@ function App() {
   }
 
   function handleUpdateUser(userInfo) {
-    requestMainApi.updateUserInfo(userInfo)
+    requestMainApi.updateUserInfo(userInfo, token)
       .then((profileInfo) => {
         setCurrentUser(profileInfo);
       })
       .catch((err) => console.log(`ошибка при изменении профиля: ${err}`));
   }
 
+  function handleSaveMovie() {
+    requestMainApi.saveMovie();
+  }
 
-  //! handle на поиск фильмов
-  //! handle на лайки
-  //! handle на удаление фильмов
+  function handleRemoveMovie() {
+    requestMainApi.removeMovie();
+  }
+
+  function handleSearchMovie() {
+    requestMoviesApi.getMoviesList()
+      .then((listMovies) => {
+        console.log(listMovies);
+      })
+      .catch((err) => console.log(`ошибка при получении фильмов: ${err}`));
+  }
 
   return (
     <CurrentUserContext.Provider value={isCurrentUser}>
