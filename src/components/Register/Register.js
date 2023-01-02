@@ -6,17 +6,19 @@ import './Register.css';
 
 function Register({ onRegister }) {
 
-  const { isErrors, isValues, isValid, handleChangeInput, setErrors, setValues, setIsValid } = useFormValidator();
+  const { isErrors, isValues, isValid, handleChangeInput } = useFormValidator();
   const navigation = useNavigate();
 
   function submitForm(evt) {
-    evt.preventDefault();
-    onRegister({
-      name: isValues.name,
-      email: isValues.email,
-      password: isValues.password,
-    })
-    navigation('/signin');
+    if (isValid) {
+      evt.preventDefault();
+      onRegister({
+        name: isValues.name,
+        email: isValues.email,
+        password: isValues.password,
+      })
+      navigation('/signin');
+    }
   }
 
   return (
@@ -32,8 +34,12 @@ function Register({ onRegister }) {
             type='text'
             name='name'
             onChange={handleChangeInput}
+            minLength={3}
             required
           />
+          <span className='register__error'>
+            {isErrors.name ? 'Недопустимое имя, минимальная длина 5 символов' : ''}
+          </span>
 
           <p className='register__text-input'>E-mail</p>
           <input
@@ -43,6 +49,7 @@ function Register({ onRegister }) {
             onChange={handleChangeInput}
             required
           />
+          <span className='register__error'>{isErrors.email ? 'Недопустимый email' : ''}</span>
 
           <p className='register__text-input'>Пароль</p>
           <input
@@ -50,8 +57,12 @@ function Register({ onRegister }) {
             type='password'
             name='password'
             onChange={handleChangeInput}
+            minLength={5}
             required
           />
+          <span className='register__error'>
+            {isErrors.password ? 'Недопустимый пароль, минимальная длина 5 символов' : ''}
+          </span>
         </fieldset>
 
         <button className='register__button' type='submit'>Зарегистрироваться</button>
