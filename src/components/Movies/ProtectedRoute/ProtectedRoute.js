@@ -1,11 +1,10 @@
-import { redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ loggedIn, children }) => {
-  if (loggedIn === false) {
-    return false;
+  if (loggedIn === null) {
+    return null;
   }
-
-  return loggedIn ? children : redirect('/');
+  return loggedIn ? children : <Navigate to='/' />;
 };
 
 export default ProtectedRoute;
