@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 import './Header.css';
 
@@ -21,7 +21,9 @@ function Header({ loggedIn, color }) {
     <section className={`header header_color_${color}`}>
       {openSlaider && <NavigationSlaider stateSlaider={setSlaider} btnProfile={handleAccountBtn} />}
       <div className='header__container'>
-        <div className='header__logo'></div>
+        <NavLink to='/'>
+          <div className='header__logo'></div>
+        </NavLink>
         {loggedIn ? <NavigationAccount stateSlaider={setSlaider} btnProfile={handleAccountBtn} /> : <NavigationMain />}
       </div>
     </section>
