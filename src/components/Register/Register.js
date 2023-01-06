@@ -35,6 +35,7 @@ function Register({ onRegister }) {
             name='name'
             onChange={handleChangeInput}
             minLength={3}
+            pattern='^[A-Za-zА-Яа-яЁё /s -]+$'
             required
           />
           <span className='register__error'>
