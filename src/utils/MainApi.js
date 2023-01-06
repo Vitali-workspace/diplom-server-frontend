@@ -3,7 +3,7 @@ const { API_MAIN_URL } = require('../utils/constants');
 class MainApi {
 
   constructor(url) {
-    this._mainUrl = url;
+    this._mainUrl = url.API_MAIN_URL;
     this._headers = { 'Content-type': 'application/json' };
   }
 
@@ -17,8 +17,8 @@ class MainApi {
   registration({ name, email, password }) {
     return fetch(`${this._mainUrl}/signup`, {
       method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify({ name, email, password }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 'name': name, 'email': email, 'password': password }),
     }).then(this._checkError);
   }
 
@@ -26,30 +26,29 @@ class MainApi {
     return fetch(`${this._mainUrl}/signin`, {
       method: 'POST',
       headers: this._headers,
-      body: JSON.stringify({ email, password }),
-    }).then(this._checkError);
-  }
-
-  logout() {
-    return fetch(`${this._mainUrl}/signout`, {
-      method: 'GET',
-      headers: this._headers,
+      body: JSON.stringify({ 'email': email, 'password': password }),
     }).then(this._checkError);
   }
 
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this._mainUrl}/users/me`, {
       method: 'GET',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
     }).then(this._checkError);
   }
 
-  updateUserInfo({ name, email }) {
+  updateUserInfo({ name, email }, token) {
     return fetch(`${this._mainUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({ name, email }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ 'name': name, 'email': email }),
     }).then(this._checkError);
   }
 
@@ -61,7 +60,7 @@ class MainApi {
     }).then(this._checkError);
   }
 
-  //! createMovie = Save movie
+
   saveMovie(movie) {
     return fetch(`${this._mainUrl}/movies`, {
       method: 'POST',
