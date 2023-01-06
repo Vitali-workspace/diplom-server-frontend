@@ -8,11 +8,11 @@ function useFormValidator() {
 
   function handleChangeInput(evt) {
     const input = evt.target;
-    const name = input.name;
-    const value = input.value;
+    const nameInput = input.name;
+    const valueInput = input.value;
 
-    setErrors({ ...isErrors, [name]: input.validationMessage });
-    setValues({ ...isValues, [name]: value });
+    setErrors({ ...isErrors, [nameInput]: input.validationMessage });
+    setValues({ ...isValues, [nameInput]: valueInput });
     setIsValid(input.closest('form').checkValidity());
   };
 
