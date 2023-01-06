@@ -2,7 +2,7 @@ const { API_MOVIES_URL } = require('../utils/constants');
 
 class MoviesApi {
   constructor(url) {
-    this._moviesUrl = url;
+    this._moviesUrl = url.API_MOVIES_URL;
     this._headers = { 'Content-type': 'application/json' };
   }
 
