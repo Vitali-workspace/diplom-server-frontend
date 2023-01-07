@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import useFormValidator from '../../hooks/useFormValidator';
 
@@ -9,7 +8,6 @@ import './Login.css';
 function Login({ onLogin }) {
 
   const { isErrors, isValues, isValid, handleChangeInput } = useFormValidator();
-  //  const navigation = useNavigate();
 
   function submitForm(evt) {
     if (isValid) {
