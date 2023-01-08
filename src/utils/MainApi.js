@@ -4,12 +4,11 @@ class MainApi {
 
   constructor(url) {
     this._mainUrl = url.API_MAIN_URL;
-    this._headers = { 'Content-type': 'application/json' };
   }
 
   _checkError(res) {
     if (!res.ok) {
-      return Promise.reject(`произошла ошибка: ${res.status}`)
+      return Promise.reject(`произошла ошибка: ${res.status}`);
     }
     return res.json();
   }
@@ -25,7 +24,7 @@ class MainApi {
   login({ email, password }) {
     return fetch(`${this._mainUrl}/signin`, {
       method: 'POST',
-      headers: this._headers,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 'email': email, 'password': password }),
     }).then(this._checkError);
   }
@@ -53,26 +52,59 @@ class MainApi {
   }
 
 
-  getUserMovies() {
+  getUserMovies(token) {
     return fetch(`${this._mainUrl}/movies`, {
       method: 'GET',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
     }).then(this._checkError);
   }
 
 
-  saveMovie(movie) {
+  saveMovie({
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    nameRU,
+    nameEN,
+    id,
+  }, token) {
+
     return fetch(`${this._mainUrl}/movies`, {
       method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify(movie),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        'country': country,
+        'director': director,
+        'duration': duration,
+        'year': year,
+        'description': description,
+        'image': `https://api.nomoreparties.co${image.url}`,
+        'trailerLink': trailerLink,
+        'thumbnail': `https://api.nomoreparties.co${image.formats.thumbnail.url}`,
+        'movieId': id,
+        'nameRU': nameRU,
+        'nameEN': nameEN,
+      }),
     }).then(this._checkError);
   }
 
-  removeMovie(movieId) {
+  removeMovie(movieId, token) {
     return fetch(`${this._mainUrl}/movies/${movieId}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
     }).then(this._checkError);
   }
 
