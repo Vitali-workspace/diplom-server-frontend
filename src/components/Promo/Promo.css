@@ -55,6 +55,10 @@
   margin: 0;
 }
 
+.promo__link {
+  width: 130px;
+}
+
 .promo__button {
   grid-area: button;
   margin: 0 0 75px;
@@ -103,6 +107,10 @@
     margin: 0 auto;
     padding: 21px 0 92px 0;
     letter-spacing: 0.3px;
+  }
+
+  .promo__link {
+    margin: 0 auto;
   }
 
   .promo__image {
