@@ -23,7 +23,7 @@
 }
 
 .movies-card__time {
-  width: 80px;
+  width: 83px;
   text-align: right;
   font-weight: 400;
   font-size: 13px;
@@ -99,6 +99,10 @@
   .movies-card__title {
     padding-left: 14px;
   }
+
+  .movies-card {
+    height: 309px;
+  }
 }
 
 
@@ -125,5 +129,11 @@
   .movies-card__time {
     font-size: 10px;
     line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movies-card {
+    height: 271px;
   }
 }
