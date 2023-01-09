@@ -1,40 +1,49 @@
-import { useState } from 'react';
-
 import './MoviesCard.css'
-import { listMovies } from '../../../utils/constants';
 
-function MoviesCard({ unsubMovie }) {
 
-  const result = unsubMovie ? 'movies-card__unsub' : '';
-  const [buttonLike, setbuttonLike] = useState('movies-card__like');
+function MoviesCard({ isPage, card, likeMovie, statusLiked, removeMovie }) {
 
-  function handleLikeClick() {
-    if (buttonLike.includes('movies-card__like_active')) {
-      setbuttonLike('movies-card__like');
-    } else {
-      setbuttonLike('movies-card__like movies-card__like_active');
+  // Изменение url для компонентов SavedMovies и Movies
+  const imageUrl = isPage === 'sectionMainMovies'
+    ? `https://api.nomoreparties.co${card.image.url}`
+    : `${card.image}`;
+
+  // Изменение стиля кнопки в сохранённых фильмах
+  const buttonRemoveStyle = isPage === 'sectionSaveMovies' ? 'movies-card__unsub' : '';
+
+  const buttonLikeActiveStyle = (statusLiked && isPage === 'sectionMainMovies') ? 'movies-card__like_active' : '';
+
+  function handleButton() {
+    if (isPage === 'sectionMainMovies' && statusLiked === false) {
+      likeMovie(card);
+    } else if (isPage === 'sectionMainMovies' && statusLiked === true) {
+      removeMovie(card);
+    }
+
+    if (isPage === 'sectionSaveMovies') {
+      removeMovie(card);
     }
   }
+
 
   return (
     <section className='movies-card'>
       <div className='movies-card__text'>
-        <h2 className='movies-card__title'>{listMovies[0].nameRU}</h2>
-        <p className='movies-card__time'>{`${listMovies[0].duration} минут`}</p>
+        <h2 className='movies-card__title'>{card.nameRU}</h2>
+        <p className='movies-card__time'>{`${card.duration} минут`}</p>
       </div>
-      <img
-        className='movies-card__image'
-        src={`https://api.nomoreparties.co/${listMovies[0].image.url}`}
-        alt='превью фильма'
-      />
+
+      <a href={card.trailerLink} target='_blank' rel='noreferrer'>
+        <img className='movies-card__image' src={`${imageUrl}`} alt='превью фильма' />
+      </a>
+
       <button
-        className={`${buttonLike} ${result}`}
+        className={`movies-card__like ${buttonRemoveStyle} ${buttonLikeActiveStyle}`}
+        onClick={handleButton}
         type='button'
-        onClick={handleLikeClick}
       >Сохранить</button>
     </section>
   );
 }
 
 export default MoviesCard;
-
