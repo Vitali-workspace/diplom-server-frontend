@@ -15,40 +15,63 @@ import AboutMe from '../Main/AboutMe/AboutMe';
 import AboutProject from '../Main/AboutProject/AboutProject';
 import Portfolio from '../Main/Portfolio/Portfolio';
 import Techs from '../Main/Techs/Techs';
-
-import SearchForm from '../Movies/SearchForm/SearchForm';
+import Movies from '../Movies/Movies';
 import Preloader from '../Movies/Preloader/Preloader';
-import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
-import { listMovies } from '../../utils/constants'
-
+import SavedMovies from '../Movies/SaveMovies/SavedMovies';
 import requestMainApi from '../../utils/MainApi';
-import requestMoviesApi from '../../utils/MoviesApi';
-
-
 
 
 function App() {
 
   const [isAuthorized, setAuthorized] = useState(false);
   const [isCurrentUser, setCurrentUser] = useState({});
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [isError, setIsError] = useState(false);
   const [isEnablePreloader, setEnablePreloader] = useState(false);
 
   const navigation = useNavigate();
   const token = localStorage.getItem('jwt');
 
-  // функция для заполнения профиля
+
+  // эффект для авторизации
   useEffect(() => {
-    if (isAuthorized === true) {
+    if (token) {
       requestMainApi.getUserInfo(token)
-        .then((user) => {
-          console.log(user);
-          setCurrentUser(user);
+        .then((userInfo) => {
+          setAuthorized(true);
+          setCurrentUser(userInfo);
         })
         .catch((err) => {
           console.log(`ошибка в авторизации: ${err}`);
         });
     }
+  }, [isAuthorized, token])
+
+  // получение фильмов пользователя при авторизации
+  useEffect(() => {
+    if (isAuthorized) {
+      requestMainApi.getUserMovies(token)
+        .then((userMoviesInfo) => {
+          setSavedMovies(userMoviesInfo);
+          setIsError(false);
+        })
+        .catch((err) => {
+          setIsError(true);
+          console.log(`ошибка в авторизации: ${err}`);
+        })
+    }
   }, [isAuthorized, token]);
+
+
+  function handleRegistration(userInfo) {
+    requestMainApi.registration(userInfo)
+      .then(() => {
+        handleLogin(userInfo);
+      })
+      .catch((err) => {
+        console.log(`ошибка при регистрации: ${err}`);
+      })
+  }
 
 
   function handleLogin(userInfo) {
@@ -66,23 +89,13 @@ function App() {
   }
 
 
-  function handleRegistration(userInfo) {
-    requestMainApi.registration(userInfo)
-      .then(() => {
-        navigation('/');
-      })
-      .catch((err) => {
-        console.log(`ошибка при регистрации: ${err}`);
-      })
-  }
-
-
   function handleSignOut() {
     localStorage.removeItem('jwt');
     setCurrentUser({});
     setAuthorized(false);
     navigation('/');
   }
+
 
   function handleUpdateUser(userInfo) {
     requestMainApi.updateUserInfo(userInfo, token)
@@ -92,21 +105,25 @@ function App() {
       .catch((err) => console.log(`ошибка при изменении профиля: ${err}`));
   }
 
-  function handleSaveMovie() {
-    requestMainApi.saveMovie();
-  }
 
-  function handleRemoveMovie() {
-    requestMainApi.removeMovie();
-  }
-
-  function handleSearchMovie() {
-    requestMoviesApi.getMoviesList()
-      .then((listMovies) => {
-        console.log(listMovies);
+  function handleSaveMovie(film) {
+    requestMainApi.saveMovie(film, token)
+      .then((filmCard) => {
+        setSavedMovies([filmCard, ...savedMovies]);
       })
-      .catch((err) => console.log(`ошибка при получении фильмов: ${err}`));
+      .catch((err) => console.log(`ошибка при сохранении фильма: ${err}`));
   }
+
+
+  function handleRemoveMovie(film) {
+    requestMainApi.removeMovie(film._id, token)
+      .then(() => {
+        const filmsList = savedMovies.filter((item) => item._id === film._id ? false : true);
+        setSavedMovies(filmsList);
+      })
+      .catch((err) => console.log(`ошибка при удалении фильма: ${err}`));
+  }
+
 
   return (
     <CurrentUserContext.Provider value={isCurrentUser}>
@@ -134,9 +151,11 @@ function App() {
               element={
                 <ProtectedRoute loggedIn={isAuthorized}>
                   <Header loggedIn={isAuthorized} color={'black'} />
-                  <SearchForm />
                   <Preloader isEnable={isEnablePreloader} />
-                  <MoviesCardList cardsList={listMovies} />
+                  <Movies
+                    onLikeClick={handleSaveMovie}
+                    onDeleteClick={handleRemoveMovie}
+                    savedMoviesList={savedMovies} />
                   <Footer />
                 </ProtectedRoute>
               }
@@ -147,9 +166,11 @@ function App() {
               element={
                 <ProtectedRoute loggedIn={isAuthorized}>
                   <Header loggedIn={true} color={'black'} />
-                  <SearchForm />
                   <Preloader isEnable={isEnablePreloader} />
-                  <MoviesCardList cardsList={listMovies} unsubMovie={'true'} />
+                  <SavedMovies
+                    onDeleteClick={handleRemoveMovie}
+                    list={savedMovies}
+                    isError={isError} />
                   <Footer />
                 </ProtectedRoute>
               }
