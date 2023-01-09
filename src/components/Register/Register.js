@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import useFormValidator from '../../hooks/useFormValidator';
 import './Register.css';
@@ -7,7 +7,6 @@ import './Register.css';
 function Register({ onRegister }) {
 
   const { isErrors, isValues, isValid, handleChangeInput } = useFormValidator();
-  const navigation = useNavigate();
 
   function submitForm(evt) {
     if (isValid) {
@@ -17,7 +16,6 @@ function Register({ onRegister }) {
         email: isValues.email,
         password: isValues.password,
       })
-      navigation('/signin');
     }
   }
 
@@ -39,7 +37,7 @@ function Register({ onRegister }) {
             required
           />
           <span className='register__error'>
-            {isErrors.name ? 'Недопустимое имя, минимальная длина 5 символов' : ''}
+            {isErrors.name ? 'Недопустимое имя, минимальная длина 3 символа' : ''}
           </span>
 
           <p className='register__text-input'>E-mail</p>
@@ -66,7 +64,11 @@ function Register({ onRegister }) {
           </span>
         </fieldset>
 
-        <button className='register__button' type='submit'>Зарегистрироваться</button>
+        <button
+          className='register__button'
+          type='submit'
+          disabled={isValid ? false : true}
+        >Зарегистрироваться</button>
         <p className='register__text'>
           Уже зарегистрированы?
           <Link className='register__link' to='/signin'> Войти</Link>

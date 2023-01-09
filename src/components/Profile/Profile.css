@@ -109,7 +109,7 @@
 }
 
 .profile__button-edit {
-  margin: 170px auto 16px;
+  margin: 127px auto 16px;
   color: #FFFFFF;
 }
 
@@ -121,6 +121,17 @@
   cursor: not-allowed;
 }
 
+.profile__message {
+  display: flex;
+  height: 16px;
+  width: 216px;
+  color: #3DDC84;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+
 @media screen and (max-width: 780px) {
 
   .profile__title {
@@ -128,7 +139,7 @@
   }
 
   .profile__button-edit {
-    margin: 158px auto 16px;
+    margin: 117px auto 16px;
   }
 
 }
@@ -149,7 +160,7 @@
   }
 
   .profile__button-edit {
-    margin: 327px auto 16px;
+    margin: 286px auto 16px;
   }
 
 }

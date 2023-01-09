@@ -51,7 +51,7 @@ function Login({ onLogin }) {
           </span>
         </fieldset>
 
-        <button className='login__button' type='submit'>Войти</button>
+        <button className='login__button' type='submit' disabled={isValid ? false : true}>Войти</button>
         <p className='login__text'>
           Ещё не зарегистрированы?
           <Link className='login__link' to='/signup'> Регистрация</Link>
