@@ -9,11 +9,23 @@
   max-width: 1140px;
   min-width: 300px;
   margin: 0 auto;
-  padding: 125px 0 10px 0;
+  padding: 89px 0 10px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: auto;
   gap: 32px 28px;
+}
+
+.card-list__message {
+  display: flex;
+  justify-content: center;
+  height: 18px;
+  width: 190px;
+  color: #EE3465;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 15px;
 }
 
 .more-button {
@@ -45,7 +57,7 @@
 @media screen and (max-width: 1140px) {
 
   .card-list__container {
-    padding: 183px 0 70px 0;
+    padding: 89px 0 70px 0;
     grid-template-columns: repeat(2, 1fr);
     gap: 35px 24px;
   }
@@ -59,7 +71,7 @@
 @media screen and (max-width: 800px) {
 
   .card-list__container {
-    padding: 138px 0 70px 0;
+    padding: 105px 0 70px 0;
   }
 
   .more-button {
@@ -85,7 +97,7 @@
 @media screen and (max-width: 400px) {
 
   .card-list__container {
-    padding: 98px 0 70px 0;
+    padding: 64px 0 70px 0;
     row-gap: 16px;
   }
 
