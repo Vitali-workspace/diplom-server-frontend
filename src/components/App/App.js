@@ -146,15 +146,17 @@ function App() {
               }
             />
 
+
             <Route
               path='/movies'
               element={
                 <ProtectedRoute loggedIn={isAuthorized}>
+                  <Preloader isEnable={isEnablePreloader}></Preloader>
                   <Header loggedIn={isAuthorized} color={'black'} />
-                  <Preloader isEnable={isEnablePreloader} />
                   <Movies
                     onLikeClick={handleSaveMovie}
                     onDeleteClick={handleRemoveMovie}
+                    statusPreloader={setEnablePreloader}
                     savedMoviesList={savedMovies} />
                   <Footer />
                 </ProtectedRoute>
@@ -166,15 +168,16 @@ function App() {
               element={
                 <ProtectedRoute loggedIn={isAuthorized}>
                   <Header loggedIn={true} color={'black'} />
-                  <Preloader isEnable={isEnablePreloader} />
                   <SavedMovies
                     onDeleteClick={handleRemoveMovie}
+                    statusPreloader={setEnablePreloader}
                     list={savedMovies}
                     isError={isError} />
                   <Footer />
                 </ProtectedRoute>
               }
             />
+
 
             <Route
               path='/profile'
