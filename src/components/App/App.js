@@ -154,8 +154,8 @@ function App() {
                   <Preloader isEnable={isEnablePreloader}></Preloader>
                   <Header loggedIn={isAuthorized} color={'black'} />
                   <Movies
-                    onLikeClick={handleSaveMovie}
-                    onDeleteClick={handleRemoveMovie}
+                    likeMovie={handleSaveMovie}
+                    removeMovie={handleRemoveMovie}
                     statusPreloader={setEnablePreloader}
                     savedMoviesList={savedMovies} />
                   <Footer />
