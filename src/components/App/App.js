@@ -169,10 +169,9 @@ function App() {
                 <ProtectedRoute loggedIn={isAuthorized}>
                   <Header loggedIn={true} color={'black'} />
                   <SavedMovies
-                    onDeleteClick={handleRemoveMovie}
+                    removeMovie={handleRemoveMovie}
                     statusPreloader={setEnablePreloader}
-                    list={savedMovies}
-                    isError={isError} />
+                    cardList={savedMovies} />
                   <Footer />
                 </ProtectedRoute>
               }
