@@ -90,8 +90,11 @@ function App() {
 
 
   function handleSignOut() {
-    localStorage.removeItem('jwt');
+    localStorage.clear();
     setCurrentUser({});
+    setSavedMovies([]);
+    setIsError(false);
+    setEnablePreloader(false);
     setAuthorized(false);
     navigation('/');
   }
@@ -101,8 +104,15 @@ function App() {
     requestMainApi.updateUserInfo(userInfo, token)
       .then((profileInfo) => {
         setCurrentUser(profileInfo);
+        setIsError(false);
       })
-      .catch((err) => console.log(`ошибка при изменении профиля: ${err}`));
+      .catch((err) => {
+        console.log(`ошибка при изменении профиля: ${err}`)
+        if (err === 'произошла ошибка: 409') {
+          setIsError(true);
+        }
+      });
+
   }
 
 
@@ -183,7 +193,11 @@ function App() {
               element={
                 <ProtectedRoute loggedIn={isAuthorized}>
                   <Header loggedIn={true} color={'black'} />
-                  <Profile onSubmitProfile={handleUpdateUser} onLogout={handleSignOut} userInfo={isCurrentUser} />
+                  <Profile
+                    onSubmitProfile={handleUpdateUser}
+                    onLogout={handleSignOut}
+                    userInfo={isCurrentUser}
+                    errorEmail={isError} />
                 </ProtectedRoute>
               }
             />

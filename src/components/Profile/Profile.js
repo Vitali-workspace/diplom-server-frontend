@@ -4,13 +4,18 @@ import useFormValidator from '../../hooks/useFormValidator';
 import './Profile.css';
 
 
-function Profile({ onSubmitProfile, onLogout, userInfo }) {
+function Profile({ onSubmitProfile, onLogout, userInfo, errorEmail }) {
 
   const [editProfile, setEditProfile] = useState(false);
   const [isSuccessMessage, setSuccessMessage] = useState('');
 
   const { isErrors, isValues, isValid, handleChangeInput, setIsValid } = useFormValidator();
-  const user = useContext(CurrentUserContext)
+  const user = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    isValues.name = user.name;
+    isValues.email = user.email;
+  }, []);
 
   useEffect(() => {
     if (user.name === isValues.name && user.email === isValues.email) {
@@ -30,15 +35,19 @@ function Profile({ onSubmitProfile, onLogout, userInfo }) {
         'email': isValues.email
       });
 
-      handleEditOff();
+      if (errorEmail) {
+        setSuccessMessage('Эта почта была уже занята');
 
-      setSuccessMessage('Данные пользователя обновлены');
+      } else {
+        setSuccessMessage('Данные пользователя обновлены');
+        handleEditOff();
+      }
+
       // время отчистки сообщения
       setTimeout(() => { setSuccessMessage('') }, 6000);
     }
 
   }
-
 
   return (
     <section className='profile'>
@@ -53,9 +62,9 @@ function Profile({ onSubmitProfile, onLogout, userInfo }) {
               type='text'
               name='name'
               value={isValues.name || ''}
+              placeholder={userInfo.name}
               onChange={handleChangeInput}
               required
-              placeholder={userInfo.name}
               minLength={3}
               pattern='^[A-Za-zА-Яа-яЁё /s -]+$'
               disabled={editProfile ? false : true}
@@ -67,9 +76,10 @@ function Profile({ onSubmitProfile, onLogout, userInfo }) {
               type='email'
               name='email'
               value={isValues.email || ''}
+              placeholder={userInfo.email}
               onChange={handleChangeInput}
               required
-              placeholder={userInfo.email}
+              pattern='[^@\s]+@[^@\s]+\.[^@\s]+'
               disabled={editProfile ? false : true}
             />
             <span className='profile__error'>
@@ -79,7 +89,7 @@ function Profile({ onSubmitProfile, onLogout, userInfo }) {
             </span>
           </fieldset>
 
-          <p className='profile__message'>{isSuccessMessage}</p>
+          <p className={errorEmail ? 'profile__message profile__message-email' : 'profile__message'}>{isSuccessMessage}</p>
 
           {editProfile ? (
             <button
