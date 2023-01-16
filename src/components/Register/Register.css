@@ -5,7 +5,6 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .register__logo {
@@ -124,6 +123,14 @@
     margin: 70px 0 3px 0;
   }
 
+}
+
+
+@media screen and (max-width: 550px) {
+
+  .register__container {
+    align-items: center;
+  }
 }
 
 

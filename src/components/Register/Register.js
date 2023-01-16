@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import useFormValidator from '../../hooks/useFormValidator';
 import './Register.css';
@@ -22,7 +22,9 @@ function Register({ onRegister }) {
   return (
     <section className='register'>
       <form className='register__container' onSubmit={submitForm}>
-        <div className='register__logo'></div>
+        <NavLink to='/'>
+          <div className='register__logo'></div>
+        </NavLink>
         <h1 className='register__title'>Добро пожаловать!</h1>
 
         <fieldset className='register__fieldset'>

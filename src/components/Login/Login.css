@@ -5,7 +5,6 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .login__logo {
@@ -123,6 +122,14 @@
 
   .login__logo {
     margin: 233px 0 0 0;
+  }
+}
+
+
+@media screen and (max-width: 550px) {
+
+  .login__container {
+    align-items: center;
   }
 }
 

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import useFormValidator from '../../hooks/useFormValidator';
 
@@ -22,7 +22,9 @@ function Login({ onLogin }) {
   return (
     <section className='login'>
       <form className='login__container' onSubmit={submitForm}>
-        <div className='login__logo'></div>
+        <NavLink to='/'>
+          <div className='login__logo'></div>
+        </NavLink>
         <h1 className='login__title'>Рады видеть!</h1>
         <fieldset className='login__fieldset'>
           <p className='login__text-input'>E-mail</p>
