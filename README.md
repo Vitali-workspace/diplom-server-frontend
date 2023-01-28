@@ -1,13 +1,6 @@
 # Описание проекта
 Макет приложения для поиска фильмов. С регистрацией и возможностью сохранять, удалять фильмы из избранного.
 
-
-## Ссылки на Pull requests
-http://frontend.diplom.vitali.nomoredomains.club/
-
-(frontend) 
-(backend)
-
 ## Ссылка на приложение
 Адрес для бэкенда:  https://api.diplom.vitali.nomoredomains.club
 
