@@ -5,6 +5,10 @@
 > [!NOTE]
 > [Ссылка на Backend репозиторий](https://github.com/Vitali-workspace/movies-explorer-api)
 
+<p>&nbsp;</p>
+
+<img src="https://i.ibb.co/wdWCLBw/perv-dip.png" alt="demo"> 
+
 <h2>&#10032; Основные функции</h2>
 
 - Регистрация пользователя 
@@ -17,7 +21,6 @@
 <h2>&#10032; Используемые технологии</h2>
 
 > [!IMPORTANT]
-> <b>Frontend</b>
 > - JavaScript
 > - React JS
 > - React Router
@@ -25,11 +28,7 @@
 > - Webpack
 > - Flexbox & Grid
 > - Adaptive design
->
-> <b>Backend</b>
-> - NodeJS
-> - Express.js
-> - MongoDB
+
 
 <h2>&#10032; Команды для установки приложения</h2>
 
