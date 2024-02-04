@@ -2,10 +2,8 @@
 
 🎞️ Movies Explorer — поисковое приложение, в котором можно зарегестрироваться и искать фильмы доступные в базе данных. 
 
-<!--
 > [!NOTE]
-> [Ссылка на проект в GitHub Pages]()
--->
+> [Ссылка на Backend репозиторий](https://github.com/Vitali-workspace/movies-explorer-api)
 
 <h2>&#10032; Основные функции</h2>
 
@@ -26,39 +24,27 @@
 > - BEM
 > - Webpack
 > - Flexbox & Grid
+> - Adaptive design
 >
 > <b>Backend</b>
 > - NodeJS
 > - Express.js
 > - MongoDB
 
-<h2>&#10032; Запуск приложения</h2>
+<h2>&#10032; Команды для установки приложения</h2>
 
+#### Установка зависимостей
 
-<!--
-## Ссылка на приложение
-Адрес для бэкенда:  https://api.diplom.vitali.nomoredomains.club
+```
+npm i
+```
+#### Запуск
 
------
+```
+npm run start
+```
+#### Сборка приложения
 
-### Ссылка на макет в Figma
-(figma) https://www.figma.com/file/tMo7JCcdkFSvUQDulClzlB/Diploma-(myCopy)?node-id=891%3A3857&t=ijleTTFAdsKN0vt8-0
-
-(google диск) https://drive.google.com/file/d/19_bHbG637SyOMvvi04h6hP7EhsCUT4me/view?usp=share_link
-
-## Ссылка на api
-https://github.com/Vitali-workspace/movies-explorer-api
-
-## Ссылка на frontend
-https://github.com/Vitali-workspace/movies-explorer-frontend
-
-
-## В проекте использованы технологии
-- React
-- JavaScript
-- Webpack
-- Адаптивная вёрстка
-- БЭМ
-- Яндекс.Облако
-
--->
+```
+npm run build
+```
